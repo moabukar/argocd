@@ -1,0 +1,2 @@
+# argocd
+Local ArgoCD test
