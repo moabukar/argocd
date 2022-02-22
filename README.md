@@ -1,4 +1,4 @@
-# ArgoCD Local Env
+# ArgoCD Project (Local Env)
 
 ## Pre-requisites 
 
@@ -60,3 +60,26 @@ kubectl -n example-app get po
 2. Make a PR and push to master
 3. Wait for ArgoCD to sync with cluster or sync manually. 
 4. Watch the pods terminate/increase.
+
+## Misc - ArgoCD CLI
+
+1. login to ArgoCD CLI
+
+```sh
+
+argocd_server=`kubectl -n argocd get pods -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`
+
+argocd login 127.0.0.1:8080 \
+  --username=admin \
+  --password="${argocd_server}" \
+  --insecure
+```
+
+2. Use the ArgoCD CLI
+
+```sh
+
+argocd app get example-app ## list ArgoCD app on the CLI ("example-app" - name of App)
+
+argocd app sync example-app ## sync the "example-app" with the repo
+```
