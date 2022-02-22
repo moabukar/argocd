@@ -20,7 +20,7 @@
 
 ```sh
 
-1. kubectl patch secret argocd-secret  -p '{"data": {"admin.password": null, "admin.passwordMtime": null}}'
+1. kubectl -n patch secret argocd-secret  -p '{"data": {"admin.password": null, "admin.passwordMtime": null}}'
 
 2. kubectl -n argocd scale deployment argocd-server --replicas=0
 
