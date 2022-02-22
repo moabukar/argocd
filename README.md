@@ -38,5 +38,18 @@ pass: argocd-server-6cdb9b4b84-jvl58
 ```
 
 
-## Step 3
+## Step 3 - App deployment (ArgoCD in Action)
 
+```sh
+
+kubectl -n argocd apply -f ./argocd/app.yaml
+
+```
+
+## Step 4 - Wait a moment and check CD is working
+
+```sh
+
+kubectl -n example-app get po
+
+```
