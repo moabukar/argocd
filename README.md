@@ -53,3 +53,10 @@ kubectl -n argocd apply -f ./argocd/app.yaml
 kubectl -n example-app get po
 
 ```
+
+## Step 5 - Test ArgoCD capabilities
+
+1. make a change in the replicas of the deployment in (./app/deployments/deployment.yaml)
+2. Make a PR and push to master
+3. Wait for ArgoCD to sync with cluster or sync manually. 
+4. Watch the pods terminate/increase.
