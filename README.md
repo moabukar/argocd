@@ -1,9 +1,10 @@
 # ArgoCD Project (Local Env)
 
-## Pre-requisites 
+## Pre-requisites
 
 - Ensure you have a container runtime enginer installed (docker-dekstop or rancher-desktop)
 - Ensure you have kubectl
+
 ## Step 1
 
 ```sh
@@ -22,6 +23,9 @@
 
 1. kubectl -n argocd patch secret argocd-secret  -p '{"data": {"admin.password": null, "admin.passwordMtime": null}}'
 
+  kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo (to get get secret)
+OR
+
 2. kubectl -n argocd scale deployment argocd-server --replicas=0
 
 once scaled-down, make sure to scale back up and wait a few minutes before
@@ -36,7 +40,6 @@ user: admin
 pass: argocd-server-6cdb9b4b84-jvl58
 
 ```
-
 
 ## Step 3 - App deployment (ArgoCD in Action)
 
@@ -58,7 +61,7 @@ kubectl -n example-app get po
 
 1. make a change in the replicas of the deployment in (./app/deployments/deployment.yaml)
 2. Make a PR and push to master
-3. Wait for ArgoCD to sync with cluster or sync manually. 
+3. Wait for ArgoCD to sync with cluster or sync manually.
 4. Watch the pods terminate/increase.
 
 ## Misc - ArgoCD CLI
